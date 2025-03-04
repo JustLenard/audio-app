@@ -36,10 +36,6 @@ const Content = ({ songs }: { songs: Song[] }) => {
 		setModalOpen(true)
 	}
 
-	const doStuff = () => {
-		createUser('mate@gmail.com')
-	}
-
 	return (
 		<div className="flex w-full flex-col bg-gradient-to-b from-black to-gray-900 text-white p-6 pb-20 min-h-screen">
 			<nav className="w-full flex justify-between items-center py-4 px-6 bg-transparent absolute top-0 left-0 right-0">
@@ -95,8 +91,6 @@ const Content = ({ songs }: { songs: Song[] }) => {
 					>
 						Începe să asculți
 					</Button>
-					{/* <Button onClick={() => setModalOpen(true)}>CLick me</Button> */}
-					<Button onClick={doStuff}>CLick me</Button>
 				</motion.div>
 			</div>
 
