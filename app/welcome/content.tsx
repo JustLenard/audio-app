@@ -11,6 +11,7 @@ import EmailModal from './emailModel'
 import { useEffect, useState } from 'react'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { createUser, getAllSongs } from '@/lib/db/queries'
+import Image from 'next/image'
 
 const Content = ({ songs }: { songs: Song[] }) => {
 	const [modalOpen, setModalOpen] = useState(false)
@@ -37,11 +38,17 @@ const Content = ({ songs }: { songs: Song[] }) => {
 	}
 
 	return (
-		<div className="flex w-full flex-col bg-gradient-to-b from-black to-gray-900 text-white p-6 pb-20 min-h-screen">
+		<div className="flex w-full flex-col bg-gradient-to-b from-black to-gray-900 text-white p-6 pb-36  md:pb-96">
 			<nav className="w-full flex justify-between items-center py-4 px-6 bg-transparent absolute top-0 left-0 right-0">
-				<div className="text-xl font-bold">🎧 AudioErotica</div>
+				<div className="text-xl font-bold flex justify-center items-center">
+					<span>
+						<Image src={'/logo.jpg'} alt="Logo" width={96} height={96} />
+					</span>
+					<span className="pb-5">AudioErotica</span>
+				</div>
+
 				{user ? (
-					<div className="flex items-center gap-4">
+					<div className="md:flex items-center gap-4 hidden">
 						<div className="flex items-center gap-2">
 							<Avatar className="w-8 h-8">
 								<AvatarFallback>{user?.charAt(0) || 'U'}</AvatarFallback>
@@ -53,7 +60,7 @@ const Content = ({ songs }: { songs: Song[] }) => {
 					</div>
 				) : (
 					<Button
-						className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm"
+						className="md:block hidden text-white px-4 py-2 text-sm bg-slate-600 "
 						onClick={() => setModalOpen(true)}
 					>
 						🔑 Autentificare
@@ -63,9 +70,9 @@ const Content = ({ songs }: { songs: Song[] }) => {
 
 			<EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onSubmit={handleEmailSubmit} />
 
-			<div className="flex flex-col items-center justify-center flex-grow text-center">
+			<div className="flex flex-col items-center justify-center flex-grow text-center pt-28 ">
 				<motion.h1
-					className="text-5xl md:text-7xl font-bold mb-6"
+					className="text-4xl md:text-7xl font-bold mb-6"
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
